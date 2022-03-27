@@ -1,6 +1,7 @@
 
 const Message = (props) => {
-    return <div>{props.user}</div>
+    return <div className={"superText"
+    }>{props.user}</div>
 
 }
 
