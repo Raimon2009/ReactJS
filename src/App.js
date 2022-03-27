@@ -10,7 +10,7 @@ function App(props) {
                 style={{ top: props.topPosition || '10px' }}>
                 Hello!
                 <h3>MyName is {props.myName}</h3>
-                <Message className="superText" user={props.myText} />
+                <Message user={props.myText} />
 
             </header>
         </div>
