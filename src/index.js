@@ -8,7 +8,7 @@ const text = 'I love the ReactJS'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App myName={name} topPosition={'100px'} myText={text} showRed />
+    <App myName={name} topPosition={'100px'} showRed />
   </React.StrictMode>,
   document.getElementById('root')
 );
