@@ -56,4 +56,17 @@
 
 .header-blue {
   background-color: blueviolet;
+}
+
+.chatBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.blockList {
+  display: flex;
+}
+
+.scrollBlock > .active {
+  border-bottom: 1px solid #333;
 }/*# sourceMappingURL=App.css.map */
