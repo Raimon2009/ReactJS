@@ -6,7 +6,6 @@ import { useParams } from 'react-router-dom';
 
 const ControlPanel = ({ addMessage }) => {
     let { chatId } = useParams();
-    // const [messageList, setMessageList] = useState([]);
     const [value, setValue] = useState('');
     const inputRef = useRef(null);
 

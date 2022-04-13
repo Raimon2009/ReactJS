@@ -2,13 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { Provider } from 'react-redux';
+import store from './store';
 
-const name = 'Alex'
-const text = 'I love the ReactJS'
+const myName = 'Alex';
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App myName={name} topPosition={'100px'} showRed />
+    <Provider store={store}>
+      <App myName={myName} topPosition={'100px'} showRed />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
