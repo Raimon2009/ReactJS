@@ -7,5 +7,5 @@ export const toggleName = {
 
 export const changeName = (name) => ({
     type: CHANGE_NAME,
-    payload: name,
+    payload: name
 });

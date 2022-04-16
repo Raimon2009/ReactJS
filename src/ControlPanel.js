@@ -6,21 +6,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addMessage } from './store/messages/actions';
 import { AUTHOR } from './common';
 
+
 const ControlPanel = () => {
     let { chatId } = useParams();
     const [value, setValue] = useState('');
     const inputRef = useRef(null);
     const dispatch = useDispatch();
-    const authorName = useSelector(state => state.profile.name);
-    const addMessages = useSelector((state) => state.messages.messageList)
-    const messages = addMessages[chatId] || [];
+    const author = useSelector(state => state.profile.name);
+    const allMessages = useSelector((state) => state.messages.messageList)
+    const messages = allMessages[chatId] || [];
 
     const handleChange = (event) => {
         setValue(event.target.value);
     }
     const getMessage = () => {
         if (value !== "") {
-            const newMessage = { text: value, author: authorName }
+            const newMessage = { text: value, author: author }
             dispatch(addMessage(chatId, newMessage));
             setValue('');
             inputRef.current.focus();

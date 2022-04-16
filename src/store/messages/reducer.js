@@ -1,6 +1,6 @@
 import { ADD_MESSAGE } from "./actions";
 
-const initialState = {
+export const initialState = {
     messageList: {},
 };
 const messageReducer = (state = initialState, action) => {

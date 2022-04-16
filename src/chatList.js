@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import { Typography, List, ListItem, ListItemAvatar, IconButton, Avatar, ListItemText, Dialog, DialogTitle, TextField } from "@mui/material";
+import { Typography, List, ListItem, ListItemAvatar, IconButton, Avatar, ListItemText, Dialog, DialogTitle, TextField, Button } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch, useSelector } from "react-redux";
-import { Button } from "react-scroll/modules";
 import { useState } from "react";
 import { addChat } from "./store/chats/actions";
+
 
 
 
