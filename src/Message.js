@@ -13,7 +13,7 @@ const Message = () => {
     let { chatId } = useParams();
 
     if (!allMessages[chatId]) return null;
-    const messages = allMessages.messages;
+    const messages = allMessages[chatId];
     const isAuthor = (author) => {
         return author === AUTHOR.bot
     }
