@@ -3,7 +3,7 @@ import { Typography, List, ListItem, ListItemAvatar, IconButton, Avatar, ListIte
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { addChat } from "./store/chats/actions";
+import { addChat, deleteChat } from "./store/chats/actions";
 
 
 
@@ -12,10 +12,13 @@ const ChatList = () => {
     const chats = useSelector((state) => state.chats.chatList);
     const [visible, setVisible] = useState(false);
     const [createName, setCreateName] = useState('');
+    const [deleted,] = useState(null);
+    const [, setDummy] = useState();
     const dispatch = useDispatch();
 
     const handleCreateName = (e) => {
         setCreateName(e.target.value);
+        setDummy({});
     }
     const handleClose = () => {
         setVisible(false);
@@ -31,6 +34,11 @@ const ChatList = () => {
         handleClose();
     }
 
+    const delChat = (chatId) => {
+        dispatch(deleteChat(chatId));
+        return deleted;
+    }
+
     return (
         <div>
             <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
@@ -40,7 +48,7 @@ const ChatList = () => {
                 {chats?.length > 0 ? (
                     chats.map((chat) => (
                         <Link to={`/chats/${chat.id}`} key={chat.id}>
-                            <ListItem secondaryAction={<IconButton edge="end" aria-label="delete"><DeleteIcon /></IconButton>}>
+                            <ListItem secondaryAction={<IconButton edge="end" aria-label="delete" onClick={delChat}><DeleteIcon /></IconButton>}>
                                 <ListItemAvatar>
                                     <Avatar />
                                 </ListItemAvatar>
