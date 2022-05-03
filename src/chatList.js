@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Typography, List, ListItem, ListItemAvatar, IconButton, Avatar, ListItemText, Dialog, DialogTitle, TextField, Button } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
-import { addChat, deleteChat } from "./store/chats/actions";
+import { useEffect, useState } from "react";
+import { addChatInFb, deleteChatFromFb, lookingForDb } from "./store/middleware";
 
 
 
@@ -15,6 +15,7 @@ const ChatList = () => {
     const [deleted,] = useState(null);
     const [, setDummy] = useState();
     const dispatch = useDispatch();
+    const { chatId } = useParams();
 
     const handleCreateName = (e) => {
         setCreateName(e.target.value);
@@ -29,15 +30,18 @@ const ChatList = () => {
     }
 
     const handleSave = () => {
-        dispatch(addChat(createName));
+        dispatch(addChatInFb(createName));
         setCreateName('');
         handleClose();
     }
 
-    const delChat = (chatId) => {
-        dispatch(deleteChat(chatId));
-        return deleted;
+    const delChat = (id) => {
+        dispatch(deleteChatFromFb(id));
     }
+    useEffect(() => {
+        dispatch(lookingForDb());
+    }, [chatId]);
+
 
     return (
         <div>
@@ -48,7 +52,7 @@ const ChatList = () => {
                 {chats?.length > 0 ? (
                     chats.map((chat) => (
                         <Link to={`/chats/${chat.id}`} key={chat.id}>
-                            <ListItem secondaryAction={<IconButton edge="end" aria-label="delete" onClick={delChat}><DeleteIcon /></IconButton>}>
+                            <ListItem secondaryAction={<IconButton edge="end" aria-label="delete" onClick={() => delChat(chat.Id)}><DeleteIcon /></IconButton>}>
                                 <ListItemAvatar>
                                     <Avatar />
                                 </ListItemAvatar>

@@ -3,8 +3,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-
-import { addMessageWithThunk } from "./store/messages/actions"
+import { addMessageInFb } from './store/middleware';
 
 const ControlPanel = () => {
     let { chatId } = useParams();
@@ -21,7 +20,7 @@ const ControlPanel = () => {
     const getMessage = () => {
         if (value !== "") {
             const newMessage = { text: value, author: author }
-            dispatch(addMessageWithThunk(chatId, newMessage));
+            dispatch(addMessageInFb(chatId, newMessage));
             setValue('');
             inputRef.current.focus();
         }

@@ -2,7 +2,9 @@ import { useParams } from 'react-router-dom';
 import { List, ListItem, ListItemAvatar, Avatar, ListItemText, Typography, Divider } from '@mui/material';
 import { AddReaction, SelfImprovement } from '@mui/icons-material';
 import { AUTHOR } from "./common";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getMessageByChatInFb } from './store/middleware';
 
 
 
@@ -11,17 +13,22 @@ const Message = () => {
     const allMessages = useSelector((state) => state.messages.messageList);
     const { name } = useSelector((state) => state.profile);
     let { chatId } = useParams();
+    const dispatch = useDispatch();
 
-    if (!allMessages[chatId]) return null;
+
     const messages = allMessages[chatId];
     const isAuthor = (author) => {
         return author === AUTHOR.bot
     }
 
+    useEffect(() => {
+        dispatch(getMessageByChatInFb(chatId))
+    }, [chatId]);
+
     return (
         <>
             <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-                {messages.map((el) => (
+                {messages?.map((el) => (
                     <div key={el.id}>Messages:
                         <ListItem alignItems="flex-start">
                             <ListItemAvatar>
