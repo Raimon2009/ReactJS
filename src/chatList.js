@@ -12,7 +12,6 @@ const ChatList = () => {
     const chats = useSelector((state) => state.chats.chatList);
     const [visible, setVisible] = useState(false);
     const [createName, setCreateName] = useState('');
-    const [deleted,] = useState(null);
     const [, setDummy] = useState();
     const dispatch = useDispatch();
     const { chatId } = useParams();
